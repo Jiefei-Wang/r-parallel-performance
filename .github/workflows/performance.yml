@@ -39,7 +39,7 @@ jobs:
     - name: lapply
       run: Rscript 'R/lapply.R'
     - name: makeREADME
-      run: Rscript -e 'knitr::knit("inst/README.Rmd", output = "README.md")'
+      run: Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
     - name: commit
       run: |
         git config --global user.name Jiefei-Wang
