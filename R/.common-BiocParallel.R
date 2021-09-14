@@ -1,4 +1,3 @@
-source("R/.common.R")
 library(BiocParallel)
 p <- SerialParam()
 bpstart(p)
@@ -33,5 +32,6 @@ table <- data.frame(
     source = pkgSource,
     package = "BiocParallel",
     backend = backend,
+    version = as.character(packageVersion("BiocParallel")),
     call = "bplapply",
     time = time)

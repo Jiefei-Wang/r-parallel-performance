@@ -6,18 +6,20 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ source ]
     paths-ignore:
       - 'results/**'
       - 'README.md'
   pull_request:
-    branches: [ main ]
+    branches: [ source ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 env:
-  n: 100000
+  nOverhead: 100000
+  nCpuBurn: 100000
+  nMemBurn: 100000
   nWorkers: 16
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -42,5 +44,5 @@ jobs:
         git config --global user.email szwjf08@gmail.com
         git add README.md
         git commit -m "Update README.md"
-        git push
+        git push origin source:main
 

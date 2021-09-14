@@ -1,36 +1,47 @@
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+    collapse = TRUE,
+    comment = "#>"
 )
-n <- as.integer(Sys.getenv("n", 100L))
-nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
+source("../R/.common.R")
+
+makeTable <- function(files){
+    referenceFile <- files[grepl("parLapply", files)]
+    otherFiles <- files[!grepl("parLapply", files)]
+    timeTable <- readRDS(referenceFile)
+    for(i in otherFiles){
+        timeTable <- rbind(timeTable, readRDS(i))
+    }
+    
+    timeTable <- timeTable[c(which(timeTable$source == timeTable$source[1]),
+                             which(timeTable$source != timeTable$source[1])
+    ),]
+    
+    timeTable$performance <- round(timeTable$time[1]/timeTable$time * 100, 2)
+    name <- colnames(timeTable)
+    name[name == "time"] <- "time(sec)"
+    name[name == "performance"] <- "performance relative to baseline(%)"
+    
+    
+    knitr::kable(timeTable, format = "markdown",
+                 col.names = name)
+}
 ```
 
-# Introduction
-test message
-
+# Overhead measurement
+This benchmark measures the overhead of the parallel functions. The function be evaluated is equavalent to
+```{r, eval=FALSE}
+lapply(1:n, function(x) runif(1))
+```
+where n=`r nOverhead`. All parallel functions use its default setting. Below is the table for the time consumption. 16 workers are used for each cluster(Note that the host may not have 16 CPUs)
 ```{r, echo=FALSE}
-files <- list.files("../results", full.names = TRUE)
-referenceFile <- files[grepl("parLapply", files)]
-otherFiles <- files[!grepl("parLapply", files)]
-timeTable <- readRDS(referenceFile)
-for(i in otherFiles){
-    timeTable <- rbind(timeTable, readRDS(i))
-}
+files <- list.files("../results/overhead", full.names = TRUE)
+makeTable(files)
+```
 
-timeTable <- timeTable[c(which(timeTable$source == timeTable$source[1]),
-                         which(timeTable$source != timeTable$source[1])
-                         ),]
-
-timeTable$performance <- round(timeTable$time[1]/timeTable$time * 100, 2)
-name <- colnames(timeTable)
-name[name == "time"] <- "time(sec)"
-name[name == "performance"] <- "performance(%)"
-
-
-knitr::kable(timeTable, format = "markdown",
-             caption = paste0("n:", n, ", workers:", nWorkers),
-             col.names = name)
+## Host machine specification
+```{r}
+benchmarkme::get_cpu()
+benchmarkme::get_ram()
 ```
 

@@ -1,15 +1,8 @@
-if(!requireNamespace("foreach"))
-    install.packages("foreach")
-if(!requireNamespace("doParallel"))
-    install.packages("doParallel")
-
-source("R/.common.R")
-
 library(foreach)
 library(doParallel)
 cl <- makeCluster(nWorkers, type="SOCK")
 registerDoParallel(cl)
-time <- system.time(
+time1 <- system.time(
     {
        foreach(i=1:n) %dopar% benchFunc()
     }
@@ -17,12 +10,13 @@ time <- system.time(
 stopCluster(cl)
 
 
+backend <- c("doParallel")
+time <- c(time1)
+
 table <- data.frame(
     source = "r-base",
     package = "foreach",
-    backend = "doParallel",
+    backend = backend,
+    version = packageVersion("doParallel"),
     call = "foreach",
     time = time)
-
-
-saveRDS(table, "results/foreach")
