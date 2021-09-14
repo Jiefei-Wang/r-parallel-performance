@@ -4,10 +4,10 @@
 test message
 
 
-Table: n:100000, workers:16
-
-|Package      |Backend   | Time(sec)| Performance(%)|
-|:------------|:---------|---------:|--------------:|
-|rbase        |lapply    |     0.354|    100.0000000|
-|BiocParallel |SnowParam |    62.755|      0.5640985|
+```
+#> Error in gzfile(file, "rb"): invalid 'description' argument
+#> Error in rbind(timeTable, readRDS(i)): object 'timeTable' not found
+#> Error in eval(expr, envir, enclos): object 'timeTable' not found
+#> Error in knitr::kable(timeTable, format = "markdown", caption = paste0("n:", : object 'timeTable' not found
+```
 
