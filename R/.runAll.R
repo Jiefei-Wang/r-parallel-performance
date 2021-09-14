@@ -4,7 +4,7 @@ for(i in pkgs){
         install.packages(i)
     }
 }
-BiocManager::install(version='devel', ask = FALSE, update = TRUE)
+BiocManager::install('Bioconductor/BiocParallel', ask = FALSE, update = TRUE)
 
 
 files <- list.files("R", full.names = TRUE)

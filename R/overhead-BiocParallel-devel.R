@@ -1,11 +1,4 @@
-BiocManager::install("BiocParallel",
-                     update = FALSE,
-                     ask = FALSE,
-                     force = TRUE,
-                     version='devel')
-
-
-pkgSource <- "BiocParallel-devel"
+pkgSource <- "BioConductor-devel"
 source("R/.common.R")
 n <- nOverhead
 benchFunc <- benchFunc.overhead

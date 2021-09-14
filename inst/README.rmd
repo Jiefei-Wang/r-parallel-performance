@@ -27,6 +27,9 @@ makeTable <- function(files){
                  col.names = name)
 }
 ```
+# Introduction
+This is a benchmark for the popular parallel packages `parallel`, `foreach` and `BiocParallel`. The source code for generating the benchmark result is available at the branch `source`.
+
 
 # Overhead measurement
 This benchmark measures the overhead of the parallel functions. The function be evaluated is equavalent to
