@@ -1,6 +1,4 @@
 library(parallel)
-n <- as.integer(Sys.getenv("n", 100L))
-nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
 
 cl <- makeCluster(nWorkers)
 

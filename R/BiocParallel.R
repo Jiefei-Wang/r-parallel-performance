@@ -6,9 +6,6 @@ if(!requireNamespace("knitr"))
     install.packages("knitr")
 
 library(BiocParallel)
-n <- as.integer(Sys.getenv("n", 100L))
-nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
-
 p <- SnowParam(workers = nWorkers)
 bpstart(p)
 time <- system.time(
@@ -17,7 +14,7 @@ time <- system.time(
 bpstop(p)
 
 
-BPTable <- data.frame(
+table <- data.frame(
     source = "BiocManager",
     package = "BiocParallel",
     backend = "SnowParam",
@@ -25,5 +22,5 @@ BPTable <- data.frame(
     time = time)
 
 
-saveRDS(BPTable, "results/BiocParallel")
+saveRDS(table, "results/BiocParallel")
 
