@@ -1,0 +1,24 @@
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+n <- as.integer(Sys.getenv("n", 100L))
+nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
+```
+
+# Introduction
+test message
+
+```{r, echo=FALSE}
+lapplyTable <- readRDS("../results/lapply")
+BPTable <- readRDS("../results/BiocParallel")
+
+timeTable <- rbind(lapplyTable, BPTable)
+
+timeTable$performance <- timeTable$time[1]/timeTable$time * 100
+knitr::kable(timeTable, format = "markdown",
+             caption = paste0("n:", n, ", workers:", nWorkers),
+             col.names = c("Package", "Backend", "Time(sec)", "Performance(%)"))
+```
+

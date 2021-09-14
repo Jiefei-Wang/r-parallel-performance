@@ -7,6 +7,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
+        paths-ignore:
+          - 'results/**'
+          - 'README.md'
   pull_request:
     branches: [ main ]
 
@@ -16,14 +19,31 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  job1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    environment:
+      n: 100000
+      nWorkers: 16
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - uses: actions/checkout@master
     - uses: r-lib/actions/setup-r@v1
       with:
         r-version: 'release'
-    - run: Rscript -e 'print("hello")'
+    - name: lapply
+      run: Rscript 'R/lapply.R'
+    - name: BiocParallel
+      run: Rscript 'R/BiocParallel.R'
+    - name: lapply
+      run: Rscript 'R/lapply.R'
+    - name: makeREADME
+      run: Rscript -e 'knitr::knit("inst/README.Rmd", output = "README.md")'
+    - name: commit
+      run: |
+        git config --global user.name Jiefei-Wang
+        git config --global user.email szwjf08@gmail.com
+        git add README.md
+        git commit -m "Update README.md"
+        git push
 
