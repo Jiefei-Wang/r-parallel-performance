@@ -33,7 +33,7 @@ jobs:
       with:
         r-version: 'release'
     - name: benchmark
-      run: Rscript 'R/runAll.R'
+      run: Rscript 'R/.runAll.R'
     - name: makeREADME
       run: Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
     - name: commit
