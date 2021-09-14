@@ -1,9 +1,10 @@
+source("R/.common.R")
 library(parallel)
 
 cl <- makeCluster(nWorkers)
 
 time <- system.time(
-    parLapply(cl, 1:n, function(x) runif(1))
+    parLapply(cl, 1:n, benchFunc)
 )[[3]]
 stopCluster(cl)
 

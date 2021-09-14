@@ -1,5 +1,6 @@
+source("R/.common.R")
 time <- system.time(
-    lapply(1:n, function(x) runif(1))
+    lapply(1:n, benchFunc)
 )[[3]]
 
 
