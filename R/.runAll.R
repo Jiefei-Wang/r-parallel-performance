@@ -4,6 +4,7 @@ for(i in pkgs){
         install.packages(i)
     }
 }
+BiocManager::install('BiocParallel', ask = FALSE, update = TRUE)
 BiocManager::install('Bioconductor/BiocParallel', ask = FALSE, update = TRUE)
 
 
