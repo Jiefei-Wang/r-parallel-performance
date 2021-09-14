@@ -1,3 +1,6 @@
+
+BiocManager::install("BiocParallel", ask = FALSE, update = FALSE)
+
 pkgSource <- "BioConductor-devel"
 source("R/.common.R")
 n <- nOverhead

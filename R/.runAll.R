@@ -1,10 +1,10 @@
-pkgs <- c("BiocManager", "knitr", "foreach", "doParallel", "benchmarkme", "remotes")
+pkgs <- c("BiocManager", "knitr", "foreach", "doParallel", "benchmarkme")
 for(i in pkgs){
     if(!requireNamespace(i)){
         install.packages(i)
     }
 }
-BiocManager::install('Bioconductor/BiocParallel', ask = FALSE, update = TRUE)
+BiocManager::install(version='devel', ask = FALSE, update = FALSE)
 
 
 files <- list.files("R", full.names = TRUE)
