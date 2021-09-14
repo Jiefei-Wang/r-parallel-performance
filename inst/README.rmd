@@ -21,8 +21,13 @@ for(i in otherFiles){
 
 
 timeTable$performance <- timeTable$time[1]/timeTable$time * 100
+name <- colnames(timeTable)
+name[name == "time"] <- "time(sec)"
+name[name == "performance"] <- "performance(%)"
+
+
 knitr::kable(timeTable, format = "markdown",
              caption = paste0("n:", n, ", workers:", nWorkers),
-             col.names = c("Package", "Backend", "Time(sec)", "Performance(%)"))
+             col.names = name)
 ```
 
