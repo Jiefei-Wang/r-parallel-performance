@@ -10,5 +10,5 @@ lapplyTable <- data.frame(package = "rbase",
                           backend = "lapply",
                           time = rbaseTime[[3]])
 
-
+dir.create("results")
 saveRDS(lapplyTable, "results/lapply")
