@@ -39,6 +39,6 @@ vignettes/*.pdf
 .Renviron
 
 *.Rproj
-results/
+
 README.md
 inst/README.html

@@ -11,15 +11,18 @@ nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
 
 p <- SnowParam(workers = nWorkers)
 bpstart(p)
-snowTime <- system.time(
+time <- system.time(
     bplapply(1:n, function(x) runif(1), BPPARAM = p)
-)
+)[[3]]
 bpstop(p)
 
 
-BPTable <- data.frame(package = "BiocParallel",
-                      backend = "SnowParam",
-                      time = snowTime[[3]])
+BPTable <- data.frame(
+    source = "BiocManager",
+    package = "BiocParallel",
+    backend = "SnowParam",
+    call = "bplapply",
+    time = time)
 
 
 saveRDS(BPTable, "results/BiocParallel")

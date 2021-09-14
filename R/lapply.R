@@ -1,14 +1,17 @@
 n <- as.integer(Sys.getenv("n", 100L))
 nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
 
-rbaseTime <- system.time(
+time <- system.time(
     lapply(1:n, function(x) runif(1))
-)
+)[[3]]
 
 
-lapplyTable <- data.frame(package = "rbase",
-                          backend = "lapply",
-                          time = rbaseTime[[3]])
+lapplyTable <- data.frame(
+    source = "r-base",
+    package = "base",
+    backend = "NA",
+    call = "lapply",
+    time = time)
 
-dir.create("results")
+
 saveRDS(lapplyTable, "results/lapply")

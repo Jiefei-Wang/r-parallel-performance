@@ -11,10 +11,14 @@ nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
 test message
 
 ```{r, echo=FALSE}
-lapplyTable <- readRDS("../results/lapply")
-BPTable <- readRDS("../results/BiocParallel")
+files <- list.files("../results", full.names = TRUE)
+referenceFile <- files[grepl("parLapply", files)]
+otherFiles <- files[!grepl("parLapply", files)]
+timeTable <- readRDS(referenceFile)
+for(i in otherFiles){
+    timeTable <- rbind(timeTable, readRDS(i))
+}
 
-timeTable <- rbind(lapplyTable, BPTable)
 
 timeTable$performance <- timeTable$time[1]/timeTable$time * 100
 knitr::kable(timeTable, format = "markdown",
