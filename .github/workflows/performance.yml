@@ -48,7 +48,7 @@ jobs:
     - name: benchmark
       run: Rscript 'R/.runAll.R'
     - name: makeREADME
-      run: Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
+      run: Rscript makeREADME.R
     - name: commit
       run: |
         git config --global user.name Jiefei-Wang

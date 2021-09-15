@@ -11,8 +11,8 @@ if(!any(grepl(".r_packages", libPaths, fixed = TRUE))){
 
 
 nOverhead <- as.integer(Sys.getenv("nOverhead", 100L))
-nCpuBurn <- as.integer(Sys.getenv("nCpu", 100L))
-nMemBurn <- as.integer(Sys.getenv("nMem", 100L))
+nCpu <- as.integer(Sys.getenv("nCpu", 100L))
+nMem <- as.integer(Sys.getenv("nMem", 100L))
 nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
 
 benchFunc.overhead <- function(x) runif(1)
