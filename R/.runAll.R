@@ -1,3 +1,4 @@
+source("R/.common.R")
 pkgs <- c("BiocManager", "knitr", "foreach", "doParallel", "benchmarkme")
 for(i in pkgs){
     if(!requireNamespace(i)){

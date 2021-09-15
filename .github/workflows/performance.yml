@@ -30,6 +30,13 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Cache packages
+        uses: actions/cache@v2
+        env:
+          cache-name: r-package-cache
+        with:
+          path: ~/.r_packages
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
     - uses: actions/checkout@master
     - uses: r-lib/actions/setup-r@v1
       with:

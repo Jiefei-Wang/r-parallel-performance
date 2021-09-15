@@ -1,3 +1,13 @@
+## Setting the package library
+libPaths <- .libPaths()
+if(!any(grepl(".r_packages", libPaths, fixed = TRUE))){
+  cachePath <- normalizePath("~/.r_packages", mustWork = FALSE, winslash = "/")
+  libPaths <- c(cachePath, libPaths)
+  .libPaths(libPaths)
+  rm(cachePath, libPaths)
+}
+
+
 nOverhead <- as.integer(Sys.getenv("nOverhead", 100L))
 nCpuBurn <- as.integer(Sys.getenv("nCpuBurn", 100L))
 nMemBurn <- as.integer(Sys.getenv("nMemBurn", 100L))
