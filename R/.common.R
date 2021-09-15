@@ -2,6 +2,8 @@
 libPaths <- .libPaths()
 if(!any(grepl(".r_packages", libPaths, fixed = TRUE))){
   cachePath <- normalizePath("~/.r_packages", mustWork = FALSE, winslash = "/")
+  if(!dir.exists(cachePath))
+    dir.create(cachePath, recursive = TRUE)
   libPaths <- c(cachePath, libPaths)
   .libPaths(libPaths)
   rm(cachePath, libPaths)

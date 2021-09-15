@@ -37,6 +37,10 @@ jobs:
       with:
         path: ~/.r_packages
         key: ${{ runner.os }}-build-${{ env.cache-name }}
+    - name: curl
+      uses: wei/curl@master
+      with:
+        args: https://httpbin.org/get
     - uses: actions/checkout@master
     - uses: r-lib/actions/setup-r@v1
       with:
