@@ -42,7 +42,10 @@ jobs:
       run: |
         git config --global user.name Jiefei-Wang
         git config --global user.email szwjf08@gmail.com
-        git add README.md
+        git add -f README.md
+        git stash push README.md
+        git checkout main
+        git checkout stash -- README.md
         git commit -m "Update README.md"
         git push origin source:main
 
