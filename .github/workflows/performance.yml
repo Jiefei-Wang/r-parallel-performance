@@ -18,8 +18,8 @@ on:
 
 env:
   nOverhead: 100000
-  nCpuBurn: 100000
-  nMemBurn: 100000
+  nCpu: 100
+  nMem: 100000
   nWorkers: 16
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
