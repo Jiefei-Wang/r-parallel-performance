@@ -1,4 +1,7 @@
 source("R/.common.R")
+print(.libPaths())
+print(dir(.libPaths()[1]))
+
 pkgs <- c("BiocManager", "knitr", "foreach", "doParallel", "benchmarkme")
 for(i in pkgs){
     if(!requireNamespace(i)){

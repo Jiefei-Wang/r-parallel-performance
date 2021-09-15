@@ -46,7 +46,7 @@ makeTable(files)
 The function being evaluated is equivalent to
 ```{r, eval=FALSE}
 lapply(1:n, function(x) {
-    m <- 10000L
+    m <- 5000L
     value <- 0
     for(i in 1:m){
         value <- value + sum(sample(1:m, m))
