@@ -31,6 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: create cache dir
+      run: mkdir ~/.r_packages
     - name: Cache packages
       uses: actions/cache@v2
       env:
