@@ -10,8 +10,6 @@ on:
     paths-ignore:
       - 'results/**'
       - 'README.md'
-  pull_request:
-    branches: [ source ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -41,15 +39,13 @@ jobs:
         path: ~/.r_packages
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: curl
-      uses: wei/curl@master
-      with:
-        args: https://httpbin.org/get
+      run: apt-get install libcurl4-openssl-dev
     - uses: actions/checkout@master
     - uses: r-lib/actions/setup-r@v1
       with:
         r-version: 'release'
     - name: benchmark
-      run: Rscript 'R/.runAll.R'
+      run: Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
     - name: makeREADME
       run: Rscript makeREADME.R
     - name: commit

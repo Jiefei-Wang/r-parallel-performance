@@ -1,4 +1,3 @@
-
 BiocManager::install("BiocParallel", ask = FALSE, update = FALSE)
 
 pkgSource <- "BioConductor-devel"
