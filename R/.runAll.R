@@ -11,6 +11,10 @@ for(i in pkgs){
 BiocManager::install(version='devel', ask = FALSE, update = FALSE)
 
 
+print(.libPaths())
+print(dir(.libPaths()[1]))
+
+
 files <- list.files("R", full.names = TRUE)
 rscript <- R.home("bin/Rscript")
 for(i in files){
