@@ -3,7 +3,7 @@
 This is a benchmark for the popular parallel packages `parallel`, `foreach` and `BiocParallel`. The source code for generating the benchmark result is available at the branch `source`.
 
 
-# Overhead measurement
+# Overhead benchmark 1
 This benchmark measures the overhead of the parallel functions. The function being evaluated is equivalent to
 
 ```r
@@ -13,12 +13,20 @@ where n=100000. All parallel functions use its default setting. Below is the tab
 
 |   |source             |package      |backend        |version |call      | time(sec)| performance relative to baseline(%)|
 |:--|:------------------|:------------|:--------------|:-------|:---------|---------:|-----------------------------------:|
-|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |     0.334|                              100.00|
-|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    39.474|                                0.85|
-|6  |r-base             |base         |NA             |4.1.1   |lapply    |     0.348|                               95.98|
-|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.7  |bplapply  |   136.015|                                0.25|
-|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.7  |bplapply  |    76.804|                                0.43|
-|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.7  |bplapply  |   109.769|                                0.30|
+|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |     0.356|                              100.00|
+|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    37.126|                                0.96|
+|6  |r-base             |base         |NA             |4.1.1   |lapply    |     0.336|                              105.95|
+|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.7  |bplapply  |   140.536|                                0.25|
+|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.7  |bplapply  |    75.591|                                0.47|
+|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.7  |bplapply  |   106.866|                                0.33|
+
+# Overhead benchmark 2
+In this benchmark we use the same setting except that n=100
+
+```
+#> Error in gzfile(file, "rb"): invalid 'description' argument
+```
+
 
 # CPU intensive benchmark
 The function being evaluated is equivalent to
@@ -38,12 +46,12 @@ where n=100. All parallel functions use its default setting.
 
 |   |source             |package      |backend        |version |call      | time(sec)| performance relative to baseline(%)|
 |:--|:------------------|:------------|:--------------|:-------|:---------|---------:|-----------------------------------:|
-|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |    87.742|                              100.00|
-|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    88.087|                               99.61|
-|6  |r-base             |base         |NA             |4.1.1   |lapply    |   170.549|                               51.45|
-|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.7  |bplapply  |   226.713|                               38.70|
-|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.7  |bplapply  |   116.317|                               75.43|
-|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.7  |bplapply  |   115.329|                               76.08|
+|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |    84.900|                              100.00|
+|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    85.808|                               98.94|
+|6  |r-base             |base         |NA             |4.1.1   |lapply    |   163.073|                               52.06|
+|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.7  |bplapply  |   218.079|                               38.93|
+|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.7  |bplapply  |   111.391|                               76.22|
+|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.7  |bplapply  |   111.751|                               75.97|
 
 
 
