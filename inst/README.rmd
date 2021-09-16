@@ -31,7 +31,7 @@ makeTable <- function(files){
 This is a benchmark for the popular parallel packages `parallel`, `foreach` and `BiocParallel`. The source code for generating the benchmark result is available at the branch `source`.
 
 
-# Overhead measurement
+# Overhead benchmark 1
 This benchmark measures the overhead of the parallel functions. The function being evaluated is equivalent to
 ```{r, eval=FALSE}
 lapply(1:n, function(x) runif(1))
@@ -41,6 +41,14 @@ where n=`r nOverhead`. All parallel functions use its default setting. Below is 
 files <- list.files("../results/overhead", full.names = TRUE)
 makeTable(files)
 ```
+
+# Overhead benchmark 2
+In this benchmark we use the same setting except that n=`r nOverhead2`
+```{r, echo=FALSE}
+files <- list.files("../results/overhead2", full.names = TRUE)
+makeTable(files)
+```
+
 
 # CPU intensive benchmark
 The function being evaluated is equivalent to

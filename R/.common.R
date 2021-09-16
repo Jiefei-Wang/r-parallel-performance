@@ -11,6 +11,7 @@
 
 
 nOverhead <- as.integer(Sys.getenv("nOverhead", 100L))
+nOverhead2 <- as.integer(Sys.getenv("nOverhead2", 100L))
 nCpu <- as.integer(Sys.getenv("nCpu", 100L))
 nMem <- as.integer(Sys.getenv("nMem", 100L))
 nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
