@@ -29,6 +29,9 @@ benchFunc.cpu <- function(x) {
 if(!dir.exists("results/overhead")){
   dir.create("results/overhead", recursive = TRUE)
 }
+if(!dir.exists("results/overhead2")){
+  dir.create("results/overhead2", recursive = TRUE)
+}
 if(!dir.exists("results/cpu")){
   dir.create("results/cpu", recursive = TRUE)
 }
