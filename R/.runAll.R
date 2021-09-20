@@ -9,6 +9,7 @@ for(i in pkgs){
     }
 }
 BiocManager::install(version='devel', ask = FALSE, update = FALSE)
+Sys.unsetenv("GITHUB_PAT")
 remotes::install_github("Bioconductor/BiocParallel", auth_token = NULL)
 
 print(.libPaths())
