@@ -13,16 +13,16 @@ where n=100000. All parallel functions use its default setting. Below is the tab
 
 |source |package  |backend |version |call      | time(sec)| performance relative to baseline(%)|
 |:------|:--------|:-------|:-------|:---------|---------:|-----------------------------------:|
-|r-base |parallel |socket  |4.1.1   |parLapply |     0.348|                               100.0|
-|r-base |base     |NA      |4.1.1   |lapply    |     0.373|                                93.3|
+|r-base |parallel |socket  |4.1.1   |parLapply |     0.289|                              100.00|
+|r-base |base     |NA      |4.1.1   |lapply    |     0.284|                              101.76|
 
 # Overhead benchmark 2
 In this benchmark we use the same setting except that n=100
 
 |source |package  |backend |version |call      | time(sec)| performance relative to baseline(%)|
 |:------|:--------|:-------|:-------|:---------|---------:|-----------------------------------:|
-|r-base |parallel |socket  |4.1.1   |parLapply |     0.060|                                 100|
-|r-base |base     |NA      |4.1.1   |lapply    |     0.006|                                1000|
+|r-base |parallel |socket  |4.1.1   |parLapply |     0.048|                                 100|
+|r-base |base     |NA      |4.1.1   |lapply    |     0.003|                                1600|
 
 
 # CPU intensive benchmark
@@ -43,8 +43,8 @@ where n=100. All parallel functions use its default setting.
 
 |source |package  |backend |version |call      | time(sec)| performance relative to baseline(%)|
 |:------|:--------|:-------|:-------|:---------|---------:|-----------------------------------:|
-|r-base |parallel |socket  |4.1.1   |parLapply |    87.882|                              100.00|
-|r-base |base     |NA      |4.1.1   |lapply    |   170.222|                               51.63|
+|r-base |parallel |socket  |4.1.1   |parLapply |    65.818|                              100.00|
+|r-base |base     |NA      |4.1.1   |lapply    |   126.000|                               52.24|
 
 
 
