@@ -9,6 +9,7 @@ for(i in pkgs){
     }
 }
 BiocManager::install(version='devel', ask = FALSE, update = FALSE)
+BiocManager::install("BiocParallel", ask = FALSE, update = FALSE)
 
 
 print(.libPaths())
