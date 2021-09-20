@@ -20,7 +20,7 @@ env:
   nCpu: 100
   nMem: 100000
   nWorkers: 16
-  R_LIBS: ~/.r_packages
+  R_LIBS: /home/runner/r_packages
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,13 +31,13 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: create cache dir
-      run: mkdir ~/.r_packages
+      run: mkdir /home/runner/r_packages
     - name: Cache packages
       uses: actions/cache@v2
       env:
         cache-name: r-package-cache
       with:
-        path: ~/.r_packages
+        path: /home/runner/r_packages
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: curl
       run: sudo apt-get update && sudo apt-get install libcurl4-openssl-dev
