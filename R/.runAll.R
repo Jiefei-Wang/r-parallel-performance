@@ -9,9 +9,7 @@ for(i in pkgs){
     }
 }
 BiocManager::install(version='devel', ask = FALSE, update = FALSE)
-BiocManager::install("BiocParallel", ask = FALSE, update = FALSE)
-BiocManager::install("Bioconductor/BiocParallel", ask = FALSE, update = FALSE)
-
+remotes::install_github("Bioconductor/BiocParallel", auth_token = NULL)
 
 print(.libPaths())
 print(dir(.libPaths()[1]))
