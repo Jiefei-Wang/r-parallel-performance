@@ -36,3 +36,6 @@ if(!dir.exists("results/cpu")){
   dir.create("results/cpu", recursive = TRUE)
 }
 
+if(!dir.exists("results/history")){
+  dir.create("results/history", recursive = TRUE)
+}
