@@ -1,5 +1,6 @@
 source("R/.common.R")
 print(.libPaths())
+.libPaths(.libPaths()[-1])
 print(dir(.libPaths()[1]))
 
 pkgs <- c("BiocManager", "knitr", "foreach", "doParallel", "benchmarkme", "remotes")
