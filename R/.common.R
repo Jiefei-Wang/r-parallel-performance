@@ -10,11 +10,10 @@
 # }
 
 
-nOverhead <- as.integer(Sys.getenv("nOverhead", 100L))
-nOverhead2 <- as.integer(Sys.getenv("nOverhead2", 100L))
-nCpu <- as.integer(Sys.getenv("nCpu", 100L))
-nMem <- as.integer(Sys.getenv("nMem", 100L))
-nWorkers <- as.integer(Sys.getenv("nWorkers", 4L))
+nOverhead <- as.integer(Sys.getenv("nOverhead", 10L))
+nCpu <- as.integer(Sys.getenv("nCpu", 10L))
+nMem <- as.integer(Sys.getenv("nMem", 10L))
+nWorkers <- as.integer(Sys.getenv("nWorkers", 2L))
 
 benchFunc.overhead <- function(x) runif(1)
 benchFunc.cpu <- function(x) {
@@ -28,9 +27,6 @@ benchFunc.cpu <- function(x) {
 
 if(!dir.exists("results/overhead")){
   dir.create("results/overhead", recursive = TRUE)
-}
-if(!dir.exists("results/overhead2")){
-  dir.create("results/overhead2", recursive = TRUE)
 }
 if(!dir.exists("results/cpu")){
   dir.create("results/cpu", recursive = TRUE)

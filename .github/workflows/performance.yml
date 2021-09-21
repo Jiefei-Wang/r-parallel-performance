@@ -16,7 +16,6 @@ on:
 
 env:
   nOverhead: 100000
-  nOverhead2: 100
   nCpu: 100
   nMem: 100000
   nWorkers: 16
