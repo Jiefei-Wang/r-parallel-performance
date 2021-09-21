@@ -8,7 +8,7 @@ for(i in pkgs){
         install.packages(i)
     }
 }
-BiocManager::install(version='3.13', ask = FALSE, update = FALSE)
+# BiocManager::install(version='3.13', ask = FALSE, update = FALSE)
 BiocManager::install("BiocParallel")
 # Sys.unsetenv("GITHUB_PAT")
 # Sys.unsetenv("GITHUB_TOKEN")
