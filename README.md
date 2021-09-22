@@ -13,12 +13,12 @@ where n=100000. All parallel functions use its default setting. Below is the tab
 
 |   |source             |package      |backend        |version |call      | time(sec)| performance relative to baseline(%)|
 |:--|:------------------|:------------|:--------------|:-------|:---------|---------:|-----------------------------------:|
-|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |     0.369|                              100.00|
-|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    39.471|                                0.93|
-|6  |r-base             |base         |NA             |4.1.1   |lapply    |     0.355|                              103.94|
-|2  |BioConductor-devel |BiocParallel |SerialParam    |1.26.2  |bplapply  |   115.144|                                0.32|
-|3  |BioConductor-devel |BiocParallel |SnowParam      |1.26.2  |bplapply  |    72.504|                                0.51|
-|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.26.2  |bplapply  |    73.434|                                0.50|
+|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |     0.338|                              100.00|
+|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    36.437|                                0.93|
+|6  |r-base             |base         |NA             |4.1.1   |lapply    |     0.326|                              103.68|
+|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.8  |bplapply  |   119.439|                                0.28|
+|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.8  |bplapply  |    73.571|                                0.46|
+|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.8  |bplapply  |    77.871|                                0.43|
 
 
 # CPU intensive benchmark
@@ -39,12 +39,12 @@ where n=100. All parallel functions use its default setting.
 
 |   |source             |package      |backend        |version |call      | time(sec)| performance relative to baseline(%)|
 |:--|:------------------|:------------|:--------------|:-------|:---------|---------:|-----------------------------------:|
-|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |    87.710|                              100.00|
-|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    88.987|                               98.56|
-|6  |r-base             |base         |NA             |4.1.1   |lapply    |   169.284|                               51.81|
-|2  |BioConductor-devel |BiocParallel |SerialParam    |1.26.2  |bplapply  |   169.715|                               51.68|
-|3  |BioConductor-devel |BiocParallel |SnowParam      |1.26.2  |bplapply  |    88.051|                               99.61|
-|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.26.2  |bplapply  |    87.480|                              100.26|
+|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |    81.024|                              100.00|
+|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    81.291|                               99.67|
+|6  |r-base             |base         |NA             |4.1.1   |lapply    |   153.046|                               52.94|
+|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.8  |bplapply  |   213.133|                               38.02|
+|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.8  |bplapply  |   109.012|                               74.33|
+|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.8  |bplapply  |   107.848|                               75.13|
 
 # BiocParallel benchmark history
 ## Overhead
@@ -62,7 +62,7 @@ makePlot(curData)
 }
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-4.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-5.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-6.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-7.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-8.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-9.png)
 
 ## CPU intensive
 
@@ -75,7 +75,7 @@ makePlot(curData)
 }
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-3.png)
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-3.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-4.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-5.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-6.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-7.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-8.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-9.png)
 
 ## Host machine specification
 

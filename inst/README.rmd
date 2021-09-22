@@ -1,0 +1,117 @@
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>"
+)
+source("../R/.common.R")
+
+makeTable <- function(files){
+    referenceFile <- files[grepl("parLapply", files)]
+    otherFiles <- files[!grepl("parLapply", files)]
+    timeTable <- readRDS(referenceFile)
+    for(i in otherFiles){
+        timeTable <- rbind(timeTable, readRDS(i))
+    }
+    
+    timeTable <- timeTable[c(which(timeTable$source == timeTable$source[1]),
+                             which(timeTable$source != timeTable$source[1])
+    ),]
+    
+    timeTable$performance <- round(timeTable$time[1]/timeTable$time * 100, 2)
+    name <- colnames(timeTable)
+    name[name == "time"] <- "time(sec)"
+    name[name == "performance"] <- "performance relative to baseline(%)"
+    
+    
+    knitr::kable(timeTable, format = "markdown",
+                 col.names = name)
+}
+```
+# Introduction
+This is a benchmark for the popular parallel packages `parallel`, `foreach` and `BiocParallel`. The source code for generating the benchmark result is available at the branch `source`.
+
+
+# Overhead benchmark
+This benchmark measures the overhead of the parallel functions. The function being evaluated is equivalent to
+```{r, eval=FALSE}
+lapply(1:n, function(x) runif(1))
+```
+where n=`r nOverhead`. All parallel functions use its default setting. Below is the table for the time consumption. 16 workers are used for each cluster(Note that the host may not have 16 CPUs)
+```{r, echo=FALSE}
+files <- list.files("../results/overhead", full.names = TRUE)
+makeTable(files)
+```
+
+
+# CPU intensive benchmark
+The function being evaluated is equivalent to
+```{r, eval=FALSE}
+lapply(1:n, function(x) {
+    m <- 5000L
+    value <- 0
+    for(i in 1:m){
+        value <- value + sum(sample(1:m, m))
+    }
+    value
+})
+```
+where n=`r nCpu`. All parallel functions use its default setting.
+
+```{r, echo=FALSE}
+files <- list.files("../results/cpu", full.names = TRUE)
+makeTable(files)
+```
+
+# BiocParallel benchmark history
+## Overhead
+```{r, include = FALSE}
+readFileData <- function(files){
+    data <- readRDS(files[1])
+    for(i in files[-1]){
+        data <- rbind(data, readRDS(i))
+    }
+    data
+}
+makePlot <- function(curData){
+    idx <- sapply(curData$version, function(x) {
+        sum(
+            sapply(curData$version, function(y) compareVersion(x, y)) <=0
+        )
+    }
+    )
+    time <- curData$time[order(idx)]
+    label <- curData$version[order(idx)]
+    plot(seq_along(idx), time, type = "b", pch = 19, 
+         col = "blue", xlab = "version", ylab = "secs", 
+         ylim = c(0,max(time)), xaxt="n")
+    axis(side=1, at=seq_along(idx), labels = label, las=2)
+}
+```
+
+
+```{r}
+files <- list.files("../results/history", full.names = TRUE)
+overheadFiles <- files[grepl(".+BiocParallel-overhead-", files)]
+overHeadData <- readFileData(overheadFiles)
+for(backend in overHeadData$backend){
+curData <- overHeadData[overHeadData$backend == backend,]
+makePlot(curData)
+}
+```
+
+## CPU intensive
+```{r}
+overheadFiles <- files[grepl(".+BiocParallel-cpu-", files)]
+overHeadData <- readFileData(overheadFiles)
+for(backend in overHeadData$backend){
+curData <- overHeadData[overHeadData$backend == backend,]
+makePlot(curData)
+}
+```
+
+## Host machine specification
+```{r}
+benchmarkme::get_cpu()
+benchmarkme::get_ram()
+```
+
