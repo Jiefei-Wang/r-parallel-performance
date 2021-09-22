@@ -8,13 +8,13 @@ for(i in pkgs){
         install.packages(i)
     }
 }
-BiocManager::install(version='devel', ask = FALSE, update = FALSE)
-BiocManager::install("BiocParallel")
+# BiocManager::install(version='devel', ask = FALSE, update = FALSE)
+# BiocManager::install("BiocParallel")
 # Sys.unsetenv("GITHUB_PAT")
 # Sys.unsetenv("GITHUB_TOKEN")
 # remotes::install_github("Bioconductor/BiocParallel", auth_token = NULL)
 
-install.packages("BiocParallel_1.27.8.tar.gz", repos = NULL, type="source")
+# install.packages("BiocParallel_1.27.8.tar.gz", repos = NULL, type="source")
 
 
 print(.libPaths())

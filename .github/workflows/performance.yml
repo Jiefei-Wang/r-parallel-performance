@@ -45,19 +45,22 @@ jobs:
       with:
         r-version: 'release'
     - name: benchmark
-      run: Rscript 'R/.runAll.R'
+      run: |
+        R CMD INSTALL BiocParallel_1.27.8.tar.gz
+        Rscript 'R/.runAll.R'
     - name: update README and commit
       run: |
         git config --global user.name Jiefei-Wang
         git config --global user.email szwjf08@gmail.com
         git fetch --all
-        files="results/. inst/README.rmd"
+        files="results/. inst/README.rmd R/.common.R"
         git add -f $files
         git stash push $files
         git checkout main
         git checkout stash -- $files
         Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
         git add README.md  figure/.
+        git rm --cached R/.common.R
         git commit -m "Update README.md and results"
         git push
 
