@@ -46,6 +46,7 @@ jobs:
         r-version: 'release'
     - name: pull result from main branch
       run: |
+        git fetch --all
         git checkout main
         git pull
         git checkout source
