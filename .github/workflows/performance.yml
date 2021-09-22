@@ -56,7 +56,7 @@ jobs:
         git stash push $files
         git checkout main
         git checkout stash -- $files
-        knitr::knit("inst/README.rmd", output = "README.md")
+        Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
         git add README.md  figure/.
         git commit -m "Update README.md and results"
         git push
