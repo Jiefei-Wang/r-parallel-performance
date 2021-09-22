@@ -13,12 +13,12 @@ where n=100000. All parallel functions use its default setting. Below is the tab
 
 |   |source             |package      |backend        |version |call      | time(sec)| performance relative to baseline(%)|
 |:--|:------------------|:------------|:--------------|:-------|:---------|---------:|-----------------------------------:|
-|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |     0.367|                              100.00|
-|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    47.892|                                0.77|
-|6  |r-base             |base         |NA             |4.1.1   |lapply    |     0.350|                              104.86|
-|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.8  |bplapply  |   121.799|                                0.30|
-|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.8  |bplapply  |    62.852|                                0.58|
-|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.8  |bplapply  |    72.514|                                0.51|
+|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |     0.469|                              100.00|
+|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    59.395|                                0.79|
+|6  |r-base             |base         |NA             |4.1.1   |lapply    |     0.804|                               58.33|
+|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.9  |bplapply  |     5.940|                                7.90|
+|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.9  |bplapply  |     5.487|                                8.55|
+|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.9  |bplapply  |    82.582|                                0.57|
 
 
 # CPU intensive benchmark
@@ -39,12 +39,12 @@ where n=100. All parallel functions use its default setting.
 
 |   |source             |package      |backend        |version |call      | time(sec)| performance relative to baseline(%)|
 |:--|:------------------|:------------|:--------------|:-------|:---------|---------:|-----------------------------------:|
-|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |    83.835|                              100.00|
-|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    83.291|                              100.65|
-|6  |r-base             |base         |NA             |4.1.1   |lapply    |   160.675|                               52.18|
-|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.8  |bplapply  |   208.506|                               40.21|
-|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.8  |bplapply  |   107.651|                               77.88|
-|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.8  |bplapply  |   107.331|                               78.11|
+|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |    75.076|                              100.00|
+|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |   113.983|                               65.87|
+|6  |r-base             |base         |NA             |4.1.1   |lapply    |   143.416|                               52.35|
+|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.9  |bplapply  |   170.162|                               44.12|
+|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.9  |bplapply  |    99.379|                               75.55|
+|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.9  |bplapply  |    93.421|                               80.36|
 
 # BiocParallel benchmark history
 ## Overhead
@@ -85,7 +85,7 @@ benchmarkme::get_cpu()
 #> [1] "GenuineIntel"
 #> 
 #> $model_name
-#> [1] "Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz"
+#> [1] "Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz"
 #> 
 #> $no_of_cores
 #> [1] 2
