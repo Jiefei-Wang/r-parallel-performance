@@ -38,14 +38,18 @@ jobs:
       with:
         path: ${{ env.R_LIBS }}
         key: ${{ runner.os }}-build-${{ env.cache-name }}
-    - name: git pull
-      run: git pull --all
     - name: curl
       run: sudo apt-get update && sudo apt-get install libcurl4-openssl-dev
     - uses: actions/checkout@master
     - uses: r-lib/actions/setup-r@v1
       with:
         r-version: 'release'
+    - name: pull result from main branch
+      run: |
+        git checkout main
+        git pull
+        git checkout source
+        git checkout main results/.
     - name: benchmark
       run: |
         git clone https://github.com/Bioconductor/BiocParallel
@@ -54,19 +58,18 @@ jobs:
         R CMD INSTALL .
         cd ..
         Rscript 'R/.runAll.R'
-    - name: update README and commit
+    - name: generate README
+      run: Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
+    - name: update README and results
       run: |
         git config --global user.name Jiefei-Wang
         git config --global user.email szwjf08@gmail.com
         git fetch --all
-        files="results/. inst/README.rmd R/.common.R"
+        files="results/. README.md figure/."
         git add -f $files
         git stash push $files
         git checkout main
         git checkout stash -- $files
-        Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
-        git add README.md  figure/.
-        git rm --cached R/.common.R
         git commit -m "Update README.md and results"
         git push
 

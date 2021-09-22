@@ -6,6 +6,9 @@ n <- nCpu
 benchFunc <- benchFunc.cpu
 source("R/.common-BiocParallel.R")
 file <- paste0("results/history/BiocParallel-cpu-", packageVersion("BiocParallel"))
+if(file.exists(file)){
+  table <- rbind(readRDS(file),table)
+}
 saveRDS(table, file)
 
 
@@ -13,4 +16,7 @@ n <- nOverhead
 benchFunc <- benchFunc.overhead
 source("R/.common-BiocParallel.R")
 file <- paste0("results/history/BiocParallel-overhead-", packageVersion("BiocParallel"))
+if(file.exists(file)){
+  table <- rbind(readRDS(file),table)
+}
 saveRDS(table, file)

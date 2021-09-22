@@ -72,19 +72,25 @@ readFileData <- function(files){
     }
     data
 }
-makePlot <- function(curData){
-    idx <- sapply(curData$version, function(x) {
+makePlot <- function(curData, title){
+    curData <- curData[!is.infinite(curData$time),]
+    time <- aggregate(curData$time, by=list(version=curData$version), FUN=mean)
+    idx <- sapply(time$version, function(x) {
         sum(
-            sapply(curData$version, function(y) compareVersion(x, y)) <=0
+            sapply(time$version, function(y) compareVersion(x, y)) <=0
         )
     }
     )
-    time <- curData$time[order(idx)]
-    label <- curData$version[order(idx)]
-    plot(seq_along(idx), time, type = "b", pch = 19, 
+    myorder <- order(idx, decreasing = TRUE)
+    time <- time[myorder,]
+    plot(seq_along(myorder), time$x, type = "b", pch = 19, 
          col = "blue", xlab = "version", ylab = "secs", 
-         ylim = c(0,max(time)), xaxt="n")
-    axis(side=1, at=seq_along(idx), labels = label, las=2)
+         ylim = c(0,max(curData$time)), xaxt="n", main = title)
+    for(i in seq_along(time$version)){
+        curVersion <- curData$version==time$version[i]
+        points(rep(i, sum(curVersion)), curData$time[curVersion], col = "blue")
+    }
+    axis(side=1, at=seq_along(myorder), labels = time$version, las=2)
 }
 ```
 
@@ -93,19 +99,19 @@ makePlot <- function(curData){
 files <- list.files("../results/history", full.names = TRUE)
 overheadFiles <- files[grepl(".+BiocParallel-overhead-", files)]
 overHeadData <- readFileData(overheadFiles)
-for(backend in overHeadData$backend){
+for(backend in unique(overHeadData$backend)){
 curData <- overHeadData[overHeadData$backend == backend,]
-makePlot(curData)
+makePlot(curData, title = backend)
 }
 ```
 
 ## CPU intensive
 ```{r}
-overheadFiles <- files[grepl(".+BiocParallel-cpu-", files)]
-overHeadData <- readFileData(overheadFiles)
-for(backend in overHeadData$backend){
-curData <- overHeadData[overHeadData$backend == backend,]
-makePlot(curData)
+cpuFiles <- files[grepl(".+BiocParallel-cpu-", files)]
+cpuData <- readFileData(cpuFiles)
+for(backend in unique(cpuData$backend)){
+curData <- cpuData[cpuData$backend == backend,]
+makePlot(curData, title = backend)
 }
 ```
 
