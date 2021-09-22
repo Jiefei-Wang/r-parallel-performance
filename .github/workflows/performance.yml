@@ -38,6 +38,8 @@ jobs:
       with:
         path: ${{ env.R_LIBS }}
         key: ${{ runner.os }}-build-${{ env.cache-name }}
+    - name: git pull
+      run: git pull --all
     - name: curl
       run: sudo apt-get update && sudo apt-get install libcurl4-openssl-dev
     - uses: actions/checkout@master
