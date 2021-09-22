@@ -46,17 +46,18 @@ jobs:
         r-version: 'release'
     - name: benchmark
       run: Rscript 'R/.runAll.R'
-    - name: makeREADME
-      run: Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
-    - name: commit
+    - name: update README and commit
       run: |
         git config --global user.name Jiefei-Wang
         git config --global user.email szwjf08@gmail.com
         git fetch --all
-        git add -f README.md results/. figure/.
-        git stash push README.md results/. figure/.
+        files="results/. figure/. inst/README.rmd"
+        git add -f $files
+        git stash push $files
         git checkout main
-        git checkout stash -- README.md results/. figure/.
+        git checkout stash -- $files
+        knitr::knit("inst/README.rmd", output = "README.md")
+        git add README.md
         git commit -m "Update README.md and results"
         git push
 
