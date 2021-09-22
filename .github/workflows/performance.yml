@@ -51,13 +51,13 @@ jobs:
         git config --global user.name Jiefei-Wang
         git config --global user.email szwjf08@gmail.com
         git fetch --all
-        files="results/. figure/. inst/README.rmd"
+        files="results/. inst/README.rmd"
         git add -f $files
         git stash push $files
         git checkout main
         git checkout stash -- $files
         knitr::knit("inst/README.rmd", output = "README.md")
-        git add README.md
+        git add README.md  figure/.
         git commit -m "Update README.md and results"
         git push
 
