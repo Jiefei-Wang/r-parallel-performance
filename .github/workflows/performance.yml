@@ -46,7 +46,11 @@ jobs:
         r-version: 'release'
     - name: benchmark
       run: |
-        R CMD INSTALL BiocParallel_1.27.8.tar.gz
+        git clone https://github.com/Bioconductor/BiocParallel
+        cd BiocParallel
+        git reset HEAD~1 --hard
+        R CMD INSTALL .
+        cd ..
         Rscript 'R/.runAll.R'
     - name: update README and commit
       run: |
