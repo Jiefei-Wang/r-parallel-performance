@@ -6,8 +6,11 @@ n <- nCpu
 benchFunc <- benchFunc.cpu
 source("R/.common-BiocParallel.R")
 file <- paste0("results/history/BiocParallel-cpu-", packageVersion("BiocParallel"))
+
 if(file.exists(file)){
+  message("Before combine:", nrow(table))
   table <- rbind(readRDS(file),table)
+  message("After combine:", nrow(table))
 }
 saveRDS(table, file)
 
