@@ -52,13 +52,7 @@ jobs:
         git checkout source
         git checkout main results/.
     - name: benchmark
-      run: |
-        git clone https://github.com/Bioconductor/BiocParallel
-        cd BiocParallel
-        git reset HEAD~1 --hard
-        R CMD INSTALL .
-        cd ..
-        Rscript 'R/.runAll.R'
+      run: Rscript 'R/.runAll.R'
     - name: generate README
       run: Rscript -e 'knitr::knit("inst/README.rmd", output = "README.md")'
     - name: update README and results
