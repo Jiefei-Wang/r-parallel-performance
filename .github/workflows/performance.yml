@@ -31,13 +31,13 @@ jobs:
     steps:
     - name: create cache dir
       run: mkdir ${{ env.R_LIBS }}
-    # - name: Cache packages
-    #   uses: actions/cache@v2
-    #   env:
-    #     cache-name: r-package-cache
-    #   with:
-    #     path: ${{ env.R_LIBS }}
-    #     key: ${{ runner.os }}-build-${{ env.cache-name }}
+    - name: Cache packages
+      uses: actions/cache@v2
+      env:
+        cache-name: r-package-cache
+      with:
+        path: ${{ env.R_LIBS }}
+        key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: curl
       run: sudo apt-get update && sudo apt-get install libcurl4-openssl-dev
     - uses: actions/checkout@master
