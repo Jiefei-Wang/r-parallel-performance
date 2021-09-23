@@ -13,12 +13,12 @@ where n=100000. All parallel functions use its default setting. Below is the tab
 
 |   |source             |package      |backend        |version |call      | time(sec)| performance relative to baseline(%)|
 |:--|:------------------|:------------|:--------------|:-------|:---------|---------:|-----------------------------------:|
-|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |     0.469|                              100.00|
-|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    59.395|                                0.79|
-|6  |r-base             |base         |NA             |4.1.1   |lapply    |     0.804|                               58.33|
-|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.9  |bplapply  |     5.940|                                7.90|
-|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.9  |bplapply  |     5.487|                                8.55|
-|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.9  |bplapply  |    82.582|                                0.57|
+|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |     0.279|                              100.00|
+|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    37.314|                                0.75|
+|6  |r-base             |base         |NA             |4.1.1   |lapply    |     0.266|                              104.89|
+|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.9  |bplapply  |     6.340|                                4.40|
+|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.9  |bplapply  |     6.174|                                4.52|
+|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.9  |bplapply  |    58.643|                                0.48|
 
 
 # CPU intensive benchmark
@@ -39,42 +39,21 @@ where n=100. All parallel functions use its default setting.
 
 |   |source             |package      |backend        |version |call      | time(sec)| performance relative to baseline(%)|
 |:--|:------------------|:------------|:--------------|:-------|:---------|---------:|-----------------------------------:|
-|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |    75.076|                              100.00|
-|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |   113.983|                               65.87|
-|6  |r-base             |base         |NA             |4.1.1   |lapply    |   143.416|                               52.35|
-|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.9  |bplapply  |   170.162|                               44.12|
-|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.9  |bplapply  |    99.379|                               75.55|
-|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.9  |bplapply  |    93.421|                               80.36|
+|1  |r-base             |parallel     |socket         |4.1.1   |parLapply |    64.019|                              100.00|
+|5  |r-base             |foreach      |doParallel     |1.0.16  |foreach   |    64.658|                               99.01|
+|6  |r-base             |base         |NA             |4.1.1   |lapply    |   123.749|                               51.73|
+|2  |BioConductor-devel |BiocParallel |SerialParam    |1.27.9  |bplapply  |   158.597|                               40.37|
+|3  |BioConductor-devel |BiocParallel |SnowParam      |1.27.9  |bplapply  |    82.611|                               77.49|
+|4  |BioConductor-devel |BiocParallel |MulticoreParam |1.27.9  |bplapply  |    82.761|                               77.35|
 
 # BiocParallel benchmark history
 ## Overhead
 
 
 
-
-```r
-files <- list.files("../results/history", full.names = TRUE)
-overheadFiles <- files[grepl(".+BiocParallel-overhead-", files)]
-overHeadData <- readFileData(overheadFiles)
-for(backend in unique(overHeadData$backend)){
-curData <- overHeadData[overHeadData$backend == backend,]
-makePlot(curData, title = backend)
-}
-```
-
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png)
 
 ## CPU intensive
-
-```r
-cpuFiles <- files[grepl(".+BiocParallel-cpu-", files)]
-cpuData <- readFileData(cpuFiles)
-for(backend in unique(cpuData$backend)){
-curData <- cpuData[cpuData$backend == backend,]
-makePlot(curData, title = backend)
-}
-```
-
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png)![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-3.png)
 
 ## Host machine specification
@@ -85,7 +64,7 @@ benchmarkme::get_cpu()
 #> [1] "GenuineIntel"
 #> 
 #> $model_name
-#> [1] "Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz"
+#> [1] "Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz"
 #> 
 #> $no_of_cores
 #> [1] 2
