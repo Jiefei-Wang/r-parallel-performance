@@ -95,7 +95,7 @@ makePlot <- function(curData, title){
 ```
 
 
-```{r}
+```{r, echo=FALSE}
 files <- list.files("../results/history", full.names = TRUE)
 overheadFiles <- files[grepl(".+BiocParallel-overhead-", files)]
 overHeadData <- readFileData(overheadFiles)
@@ -106,7 +106,7 @@ makePlot(curData, title = backend)
 ```
 
 ## CPU intensive
-```{r}
+```{r, echo=FALSE}
 cpuFiles <- files[grepl(".+BiocParallel-cpu-", files)]
 cpuData <- readFileData(cpuFiles)
 for(backend in unique(cpuData$backend)){
