@@ -4,19 +4,12 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  workflow_run:
-    workflows: ["timer"]
-    types:
-      - completed
-
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-    inputs:
-      name:
-        description: 'Manually do benchmark'
-        required: false
-        default: 'Manually do benchmark'
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ source ]
+    paths-ignore:
+      - 'results/**'
+      - 'README.md'
 
 env:
   nOverhead: 100000
