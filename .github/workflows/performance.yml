@@ -10,6 +10,7 @@ on:
     paths-ignore:
       - 'results/**'
       - 'README.md'
+  workflow_dispatch:
 
 env:
   nOverhead: 100000
